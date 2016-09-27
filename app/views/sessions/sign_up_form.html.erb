@@ -1,0 +1,14 @@
+<form action="/sign_up" accept-charset="UTF-8" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <h2>Create an account</h2>
+  <label for="inputEmail">Email address</label>
+  <input type="email" id="inputEmail" name="email" placeholder="Email address" required autofocus>
+  <label for="inputPassword">Password</label>
+  <input type="password" id="inputPassword" name="password" placeholder="Password" required>
+  <div>
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button type="submit">Create account</button>
+</form>

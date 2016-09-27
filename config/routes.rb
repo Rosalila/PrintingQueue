@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   resources :orders
   resources :picked_things
   resources :things
+
+  post 'log_in' => 'sessions#log_in'
+  post 'sign_up' => 'sessions#sign_up'
+  post 'log_out' => 'sessions#log_out'
+  get 'sessions/log_in_form' => 'sessions#log_in_form'
+  get 'sessions/sign_up_form' => 'sessions#sign_up_form'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
