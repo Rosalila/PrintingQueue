@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :colors
+  resources :materials
+  resources :orderers
+  resources :orders
+  resources :picked_things
+  resources :things
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,1 @@
+json.partial! "picked_things/picked_thing", picked_thing: @picked_thing

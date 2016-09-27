@@ -1,0 +1,1 @@
+json.array! @picked_things, partial: 'picked_things/picked_thing', as: :picked_thing

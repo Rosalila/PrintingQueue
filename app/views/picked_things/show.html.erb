@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @picked_thing.user_id %>
+</p>
+
+<p>
+  <strong>Thing:</strong>
+  <%= @picked_thing.thing_id %>
+</p>
+
+<%= link_to 'Edit', edit_picked_thing_path(@picked_thing) %> |
+<%= link_to 'Back', picked_things_path %>
