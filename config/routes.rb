@@ -11,6 +11,14 @@ Rails.application.routes.draw do
   post 'log_out' => 'sessions#log_out'
   get 'sessions/log_in_form' => 'sessions#log_in_form'
   get 'sessions/sign_up_form' => 'sessions#sign_up_form'
+
+  post 'print' => 'things#print'
+  post 'pickup' => 'things#pickup'
+  get 'print_form' => 'things#print_form'
+  get 'pickup_form' => 'things#pickup_form'
+
+  get 'home' => 'home#index'
+  root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

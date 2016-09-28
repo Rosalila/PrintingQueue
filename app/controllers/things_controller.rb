@@ -61,7 +61,64 @@ class ThingsController < ApplicationController
     end
   end
 
+  def pickup
+
+    @thing = get_thing_by_name params[:thing_name]
+
+    @thing.ready_for_pickup_amount -= params[:amount].to_i
+    @thing.save
+
+    @pickup_log = PickupLog.new
+    @pickup_log.user_id = current_user.id
+    @pickup_log.thing_id = @thing.id
+    @pickup_log.amount = params[:amount].to_i
+    @pickup_log.save
+
+    respond_to do |format|
+      format.html { redirect_to things_url, notice: 'Thing was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+
+  end
+
+  def print
+
+    @thing = get_thing_by_name params[:thing_name]
+
+    @thing.ready_for_pickup_amount += params[:amount].to_i
+    @thing.save
+
+    @print_log = PrintLog.new
+    @print_log.user_id = current_user.id
+    @print_log.thing_id = @thing.id
+    @print_log.amount = params[:amount].to_i
+    @print_log.save
+
+    respond_to do |format|
+      format.html { redirect_to things_url, notice: 'Thing was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+
+  end
+
+  def print_form
+  end
+
+  def pickup_form
+  end
+
   private
+    def get_thing_by_name name
+      @thing = Thing.find_by_name(name)
+      if !@thing
+        @thing = Thing.new
+        @thing.name = name
+        @thing.ready_for_pickup_amount = 0
+        @thing.save
+      end
+      return @thing
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_thing
       @thing = Thing.find(params[:id])

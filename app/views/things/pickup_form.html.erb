@@ -1,0 +1,33 @@
+<div class="col s12">
+
+  <form action="/pickup" accept-charset="UTF-8" method="post" autocomplete="false">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <h2>Pickup notification</h2>
+
+    <div class="input-field col s12">
+      <input name="thing_name" type="text" id="autocomplete-input" class="thing" autocomplete="off">
+      <label for="autocomplete-input">Thing name</label>
+    </div>
+
+    <div class="input-field col s12">
+      <input name="amount" type="text" id="autocomplete-input" autocomplete="off">
+      <label for="autocomplete-input">Amount</label>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    $('input.thing').autocomplete({
+      data: {
+        <% Thing.all.each do |thing| %>
+          "<%= thing.name %>": null,
+        <% end %>
+      }
+    });
+  });
+</script>

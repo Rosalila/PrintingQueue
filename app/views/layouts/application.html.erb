@@ -1,18 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PrintingQueue</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
 
-<% if current_user %>
-  You are logged in as: <%= current_user.email %>
-<% end %>
+    <%= csrf_meta_tags %>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="/extras/nouislider.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+      nav ul li a{
+        background-color: #7b1fa2;
+      }
+      #nav_logo{
+        background-color: #7b1fa2;
+      }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  </head>
+  <body>
 
-<%= yield %>
-
-</body>
+    <ul id="stock_dropdown" class="dropdown-content">
+      <li><a href="/things" class="white-text">Stock</a></li>
+      <li><a href="/pickup_form" class="white-text">Notify Pickup</a></li>
+      <li><a href="/print_form" class="white-text">Notify Print</a></li>
+    </ul>
+    <nav>
+      <div id="nav_logo" class="nav-wrapper">
+        <a href="/" class="brand-logo">3d Printing Queue</a>
+        <ul class="right hide-on-med-and-down">
+          <% if current_user %>
+            <li><a href="/">Home</a></li>
+            <li><a class="dropdown-button" href="" data-activates="stock_dropdown">Stock<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li>
+              <form action="/log_out" accept-charset="UTF-8" method="post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <div class="actions">
+                  <input type="submit" name="commit" value="Log out">
+                </div>
+              </form>
+            </li>
+          <% else %>
+            <li><a href="/sessions/log_in_form">Login</a></li>
+            <li><a href="/sessions/sign_up_form">Sign up</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <% if current_user %>
+        You are logged in as: <%= current_user.email %>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
 </html>

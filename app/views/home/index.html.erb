@@ -1,0 +1,14 @@
+<div class="col s12">
+  <h1>Latest Pickups</h1>
+  <% @pickup_logs.each do |pickup| %>
+    <%= pickup.user.email %> picked <%= pickup.amount %> <%= pickup.thing.name %><%= pickup.amount>1 ? "s" : "" %>
+    <%= timeago_tag pickup.created_at, :nojs => true, :limit => 10.days.ago %> ago
+    <br>
+  <% end %>
+  <h1>Latest Prints</h1>
+  <% @print_logs.each do |print| %>
+    <%= print.user.email %> printed <%= print.amount %> <%= print.thing.name %><%= print.amount>1 ? "s" : "" %>
+    <%= timeago_tag print.created_at, :nojs => true, :limit => 10.days.ago %> ago
+    <br>
+  <% end %>
+</div>
